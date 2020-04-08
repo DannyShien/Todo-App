@@ -20,7 +20,11 @@ class TodoApp extends Component {
         /> 
         <div>
           {this.state.todos.map( task => (
-            <List key={ task.id } task={ task.input } />
+            <List 
+              key={ task.id } 
+              task={ task } 
+              isComplete={() => this.isComplete(task.id)}  
+            />
           ))}
         </div>
 
@@ -28,9 +32,25 @@ class TodoApp extends Component {
     )
   } 
 
-  addTodo = (todo) => {
+  addTodo = (task) => {
     this.setState({
-      todos: [todo, ...this.state.todos]
+      todos: [task, ...this.state.todos]
+    })
+  }
+
+  isComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map( task => {
+        console.log(task)
+       if (task.id === id ) {
+          return {
+            ...task,
+            isComplete: !task.isComplete
+          }
+       } else {
+         return task
+       }  
+      })
     })
   }
   
