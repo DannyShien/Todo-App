@@ -36,7 +36,6 @@ class Form extends Component {
     this.props.onSubmit({
       input: this.state.input,
       isComplete: false,
-      // id: Math.ceil(Math.random())
       id: Math.random()
     })
     this.setState({

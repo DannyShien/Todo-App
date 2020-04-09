@@ -19,11 +19,12 @@ class TodoApp extends Component {
           onSubmit={ this.addTodo }
         /> 
         <div>
-          {this.state.todos.map( task => (
+          {this.state.todos.map( todo => (
             <List 
-              key={ task.id } 
-              task={ task } 
-              isComplete={() => this.isComplete(task.id)}  
+              key={ todo.id } 
+              todo={ todo } 
+              toggleComplete={ () => this.toggleComplete(todo.id) }  
+              onDelete={ () => this.handleDelete(todo.id) }
             />
           ))}
         </div>
@@ -32,28 +33,32 @@ class TodoApp extends Component {
     )
   } 
 
-  addTodo = (task) => {
+  addTodo = (todo) => {
     this.setState({
-      todos: [task, ...this.state.todos]
+      todos: [todo, ...this.state.todos]
     })
   }
 
-  isComplete = (id) => {
+  toggleComplete = (id) => {
     this.setState({
-      todos: this.state.todos.map( task => {
-        console.log(task)
-       if (task.id === id ) {
+      todos: this.state.todos.map( todo => {
+       if (todo.id === id ) {
           return {
-            ...task,
-            isComplete: !task.isComplete
+            ...todo,
+            isComplete: !todo.isComplete
           }
        } else {
-         return task
+         return todo
        }  
       })
     })
   }
   
+  handleDelete = (id) => {
+    this.setState({
+      todos: this.state.todos.filter( todo => todo.id !== id)
+    })
+  }
 
 }
 

@@ -1,15 +1,22 @@
 import React from 'react';
 
-const List = ({ task, isComplete }) => {
-  console.log()
+const List = ({ todo, toggleComplete, onDelete  }) => {
   return (
     <div 
-      onClick={isComplete}
       style={{
-        textDecoration: task.isComplete ? 'line-through' : ''
+        display: 'flex',
+        justifyContent: 'center'
       }}
     >
-      {task.input}
+      <div 
+        onClick={ toggleComplete }
+        style={{
+          textDecoration: todo.isComplete ? 'line-through' : ''
+        }}
+      >
+        { todo.input }
+      </div>
+      <button onClick={ onDelete } >x</button>
     </div>
   )
 }
