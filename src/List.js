@@ -16,7 +16,7 @@ const List = ({ todo, toggleComplete, onDelete  }) => {
       >
         { todo.input }
       </div>
-      <button onClick={ onDelete } >x</button>
+      <button onClick={ onDelete } >✖️</button>
     </div>
   )
 }
